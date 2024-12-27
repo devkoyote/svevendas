@@ -1,6 +1,7 @@
 com\prizma\svevendas\view\frmCustomers$1.class
 com\prizma\svevendas\Svevendas.class
 com\prizma\svevendas\utils\CleanFields.class
+com\prizma\svevendas\view\frmCustomers$7.class
 com\prizma\svevendas\jdbc\ConnectionDatabase.class
 com\prizma\svevendas\view\frmCustomers$2.class
 com\prizma\svevendas\dao\CustomersDAO.class

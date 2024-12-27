@@ -7,7 +7,9 @@ package com.prizma.svevendas.view;
 import com.prizma.svevendas.dao.CustomersDAO;
 import com.prizma.svevendas.model.Customers;
 import com.prizma.svevendas.utils.CleanFields;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +17,36 @@ import javax.swing.JOptionPane;
  */
 public class frmCustomers extends javax.swing.JFrame {
 
+    public void listTable(){
+        CustomersDAO cdao = new CustomersDAO();
+        List<Customers> list = cdao.listCustomer();
+        // Call DefaultTableModel
+        DefaultTableModel dtb =  (DefaultTableModel) jTable1.getModel();
+        // Set Colums rows
+        dtb.setNumRows(0);
+        // for 
+        for(Customers ctm : list) {
+            // put dtb -> list
+            dtb.addRow(new Object[]{
+                ctm.getId(),
+                ctm.getName(),
+                ctm.getRg(),
+                ctm.getCpf(),
+                ctm.getEmail(),
+                ctm.getPhone(),
+                ctm.getMovel(),
+                ctm.getCep(),
+                ctm.getAddress(),
+                ctm.getComplement(),
+                ctm.getNumberHouse(),
+                ctm.getCity(),
+                ctm.getStreet(),
+                ctm.getState()
+                
+            });
+        }
+    }
+    
     /**
      * Creates new form frmCustomers
      */
@@ -35,6 +67,11 @@ public class frmCustomers extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanelData = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        txt_name_cc = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btn_search_cc = new javax.swing.JButton();
         jPanelPersonalData = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_id = new javax.swing.JTextField();
@@ -73,6 +110,11 @@ public class frmCustomers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanelConsult.setBackground(new java.awt.Color(255, 32, 55));
 
@@ -97,15 +139,51 @@ public class frmCustomers extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
+        jLabel16.setText("Nome:");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "RG", "CPF", "Email", "Telefone", "Celular", "Cep", "Endereço", "Complemento", "Nº", "Cidade", "Bairro", "Estado"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        btn_search_cc.setText("Pesquisar");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 972, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_name_cc, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_search_cc)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 316, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txt_name_cc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_search_cc))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanelData.addTab("Consulta de Clientes", jPanel3);
@@ -435,6 +513,10 @@ public class frmCustomers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_movelActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        listTable();
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -477,6 +559,7 @@ public class frmCustomers extends javax.swing.JFrame {
     private javax.swing.JButton btn_print;
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_search;
+    private javax.swing.JButton btn_search_cc;
     private javax.swing.JComboBox<String> cbx_state;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -485,6 +568,7 @@ public class frmCustomers extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -497,6 +581,8 @@ public class frmCustomers extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelConsult;
     private javax.swing.JTabbedPane jPanelData;
     private javax.swing.JPanel jPanelPersonalData;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txt_address;
     private javax.swing.JFormattedTextField txt_cep;
     private javax.swing.JTextField txt_city;
@@ -506,6 +592,7 @@ public class frmCustomers extends javax.swing.JFrame {
     private javax.swing.JTextField txt_id;
     private javax.swing.JFormattedTextField txt_movel;
     private javax.swing.JTextField txt_name;
+    private javax.swing.JTextField txt_name_cc;
     private javax.swing.JTextField txt_number;
     private javax.swing.JFormattedTextField txt_phone;
     private javax.swing.JTextField txt_rg;

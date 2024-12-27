@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -93,6 +95,42 @@ public class CustomersDAO {
             JOptionPane.showMessageDialog(null, "Erro a pesquisa cliente: " +e);
         }
         
+        return null;
+    }
+    
+    // Method List 
+    public List<Customers> listCustomer() {
+        List<Customers> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_clientes";
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            
+            // use next
+            while(rs.next()) {
+                // add new Customer
+                Customers ctm = new Customers();
+                ctm.setId(rs.getInt("id"));
+                ctm.setName(rs.getString("nome"));
+                ctm.setRg(rs.getString("rg"));
+                ctm.setCpf(rs.getString("cpf"));
+                ctm.setEmail(rs.getString("email"));
+                ctm.setPhone(rs.getString("telefone"));
+                ctm.setMovel(rs.getString("celular"));
+                ctm.setCep(rs.getString("cep"));
+                ctm.setAddress(rs.getString("endereco"));
+                ctm.setNumberHouse(rs.getInt("numero"));
+                ctm.setComplement(rs.getString("complemento"));
+                ctm.setStreet(rs.getString("bairro"));
+                ctm.setCity(rs.getString("cidade"));
+                ctm.setState(rs.getString("estado"));
+                // add customer in list
+                list.add(ctm);
+            }
+            return list;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar: "+e);
+        }
         return null;
     }
 
