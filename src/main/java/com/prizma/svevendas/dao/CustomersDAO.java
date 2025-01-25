@@ -60,7 +60,57 @@ public class CustomersDAO {
         }
 
     }
+
+    public void edit(Customers ctm) {
+        try {
+
+            String sql = "UPDATE tb_clientes SET nome=?, rg=?, cpf=?, email=?, telefone=?, celular=?, cep=?, endereco=?, numero=?, complemento=?, bairro=?, cidade=?, estado=? WHERE id=?";
+
+            // Prepared Statement connection
+            PreparedStatement pst = con.prepareStatement(sql);
+            // GET object to model
+            pst.setString(1, ctm.getName());
+            pst.setString(2, ctm.getRg());
+            pst.setString(3, ctm.getCpf());
+            pst.setString(4, ctm.getEmail());
+            pst.setString(5, ctm.getPhone());
+            pst.setString(6, ctm.getMovel());
+            pst.setString(7, ctm.getCep());
+            pst.setString(8, ctm.getAddress());
+            pst.setInt(9, ctm.getNumberHouse());
+            pst.setString(10, ctm.getComplement());
+            pst.setString(11, ctm.getStreet());
+            pst.setString(12, ctm.getCity());
+            pst.setString(13, ctm.getState());
+            pst.setInt(14, ctm.getId());
+
+            // Execute put data
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Cliente editado com sucesso!");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar editar Cliente: " + e);
+        }
+
+    }
     
+    // Delete Customers
+    public void delete(Customers ctm) {
+    
+        try {
+            String sql = "DELETE FROM tb_clientes WHERE id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, ctm.getId());
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar excluir cliente! " +e);
+        }
+    
+    }
+
     // Search Customer
     public Customers Search(String name) {
         try {
@@ -72,7 +122,7 @@ public class CustomersDAO {
             ResultSet rs = pst.executeQuery();
             Customers ctm = new Customers();
             // IF RESULT -> NEXT (names of columns database)
-            if(rs.next()) {
+            if (rs.next()) {
                 ctm.setId(rs.getInt("id"));
                 ctm.setName(rs.getString("nome"));
                 ctm.setRg(rs.getString("rg"));
@@ -87,17 +137,17 @@ public class CustomersDAO {
                 ctm.setStreet(rs.getString("bairro"));
                 ctm.setCity(rs.getString("cidade"));
                 ctm.setState(rs.getString("estado"));
-                
+
             }
             return ctm;
-            
+
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro a pesquisa cliente: " +e);
+            JOptionPane.showMessageDialog(null, "Erro a pesquisa cliente: " + e);
         }
-        
+
         return null;
     }
-    
+
     // Method List 
     public List<Customers> listCustomer() {
         List<Customers> list = new ArrayList<>();
@@ -105,9 +155,9 @@ public class CustomersDAO {
             String sql = "SELECT * FROM tb_clientes";
             PreparedStatement pst = con.prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
-            
+
             // use next
-            while(rs.next()) {
+            while (rs.next()) {
                 // add new Customer
                 Customers ctm = new Customers();
                 ctm.setId(rs.getInt("id"));
@@ -129,7 +179,44 @@ public class CustomersDAO {
             }
             return list;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar: "+e);
+            JOptionPane.showMessageDialog(null, "Erro ao listar: " + e);
+        }
+        return null;
+    }
+
+    // Search List 
+    public List<Customers> listSearchFilter(String name) {
+        List<Customers> list = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM tb_clientes WHERE nome like ?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, name);
+            ResultSet rs = pst.executeQuery();
+
+            // use next
+            while (rs.next()) {
+                // add new Customer
+                Customers ctm = new Customers();
+                ctm.setId(rs.getInt("id"));
+                ctm.setName(rs.getString("nome"));
+                ctm.setRg(rs.getString("rg"));
+                ctm.setCpf(rs.getString("cpf"));
+                ctm.setEmail(rs.getString("email"));
+                ctm.setPhone(rs.getString("telefone"));
+                ctm.setMovel(rs.getString("celular"));
+                ctm.setCep(rs.getString("cep"));
+                ctm.setAddress(rs.getString("endereco"));
+                ctm.setNumberHouse(rs.getInt("numero"));
+                ctm.setComplement(rs.getString("complemento"));
+                ctm.setStreet(rs.getString("bairro"));
+                ctm.setCity(rs.getString("cidade"));
+                ctm.setState(rs.getString("estado"));
+                // add customer in list
+                list.add(ctm);
+            }
+            return list;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar: " + e);
         }
         return null;
     }
