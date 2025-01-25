@@ -6,12 +6,12 @@ package com.prizma.svevendas.view;
 
 import com.prizma.svevendas.dao.CustomersDAO;
 import com.prizma.svevendas.dao.ProductDAO;
+import com.prizma.svevendas.dao.SuppliersDAO;
 import com.prizma.svevendas.model.Customers;
 import com.prizma.svevendas.model.Product;
+import com.prizma.svevendas.model.Suppliers;
 import com.prizma.svevendas.utils.CleanFields;
-import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -76,7 +76,7 @@ public class frmProducts extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txt_stock = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        cbx_employees = new javax.swing.JComboBox<>();
+        cbx_suppliers = new javax.swing.JComboBox();
         btn_search = new javax.swing.JButton();
         btn_new = new javax.swing.JButton();
         btn_save = new javax.swing.JButton();
@@ -135,6 +135,15 @@ public class frmProducts extends javax.swing.JFrame {
                 "Código", "Descrição", "Preço", "Qtd. Produtos", "Fornecedor"
             }
         ));
+        table.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tableAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableMouseClicked(evt);
@@ -214,6 +223,26 @@ public class frmProducts extends javax.swing.JFrame {
 
         jLabel15.setText("Fornecedor:");
 
+        cbx_suppliers.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                cbx_suppliersAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        cbx_suppliers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbx_suppliersMouseClicked(evt);
+            }
+        });
+        cbx_suppliers.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                cbx_suppliersComponentShown(evt);
+            }
+        });
+
         btn_search.setText("Pesquisar");
         btn_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,7 +277,7 @@ public class frmProducts extends javax.swing.JFrame {
                     .addGroup(panelPersonalDataLayout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(18, 18, 18)
-                        .addComponent(cbx_employees, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbx_suppliers, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(67, 240, Short.MAX_VALUE))
         );
         panelPersonalDataLayout.setVerticalGroup(
@@ -274,7 +303,7 @@ public class frmProducts extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(panelPersonalDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(cbx_employees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_suppliers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -359,28 +388,22 @@ public class frmProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_idActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
-        // Capture vizualization data and send to database
-//        Customers ct = new Customers();
-//
-//        ct.setName(txt_describe.getText());
-//        ct.setRg(txt_price.getText());
-//        ct.setCpf(txt_cpf.getText());
-//        ct.setEmail(txt_stock.getText());
-//        ct.setPhone(txt_phone.getText());
-//        ct.setMovel(txt_movel.getText());
-//        ct.setCep(txt_cep.getText());
-//        ct.setAddress(txt_address.getText());
-//        ct.setNumberHouse(Integer.parseInt(txt_number.getText()));
-//        ct.setComplement(txt_complement.getText());
-//        ct.setCity(txt_city.getText());
-//        ct.setStreet(txt_street.getText());
-//        ct.setState(cbx_employees.getSelectedItem().toString());
-//
-//        // Call method saveDAO
-//        CustomersDAO cdao = new CustomersDAO();
-//        cdao.save(ct);
-//        CleanFields cls = new CleanFields();
-//        cls.cleanForm(panelPersonalData);
+
+        Product prd = new Product();
+
+        prd.setDescribe(txt_describe.getText());
+        prd.setPrice(Double.parseDouble(txt_price.getText()));
+        prd.setQtd_Stock(Integer.parseInt(txt_stock.getText()));
+
+        // recovery id
+        System.out.println(cbx_suppliers.getSelectedItem().toString());
+        prd.setSuppliers((Suppliers) cbx_suppliers.getSelectedItem());
+
+        // Call method saveDAO
+        ProductDAO pdao = new ProductDAO();
+        pdao.save(prd);
+        CleanFields cls = new CleanFields();
+        cls.cleanForm(panelPersonalData);
 
     }//GEN-LAST:event_btn_saveActionPerformed
 
@@ -531,23 +554,21 @@ public class frmProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_describeMouseClicked
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-//        // Select Guide to capture and transfer datas other guide
-//        panelGuides.setSelectedIndex(0);
-//        txt_id.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-//        txt_describe.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-//        txt_price.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
-//        txt_cpf.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
-//        txt_stock.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
-//        txt_phone.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
-//        txt_movel.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
-//        txt_cep.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
-//        txt_address.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
-//        txt_complement.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
-//        txt_number.setText(table.getValueAt(table.getSelectedRow(), 10).toString());        
-//        txt_street.setText(table.getValueAt(table.getSelectedRow(), 11).toString());
-//        txt_city.setText(table.getValueAt(table.getSelectedRow(), 12).toString());
-//        cbx_employees.setSelectedItem(table.getValueAt(table.getSelectedRow(), 13).toString());
-
+        panelGuides.setSelectedIndex(0);
+        txt_id.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+        txt_describe.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+        txt_price.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+        txt_stock.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+        
+        // Set Supplier and method Search -> Reset ComboBox no risk duplicate
+        Suppliers sup = new Suppliers();
+        SuppliersDAO sdao = new SuppliersDAO();
+        // search value 
+        sup = sdao.Search(table.getValueAt(table.getSelectedRow(), 4).toString());
+        cbx_suppliers.removeAllItems();
+        // add in model comboBox
+        cbx_suppliers.getModel().setSelectedItem(sup);
+        
     }//GEN-LAST:event_tableMouseClicked
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
@@ -580,13 +601,41 @@ public class frmProducts extends javax.swing.JFrame {
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         //Action delete customer for id
         Customers ctm = new Customers();
-        ctm.setId(Integer.valueOf(txt_id.getText()));
+        ctm.setId(Integer.parseInt(txt_id.getText()));
         CustomersDAO cdao = new CustomersDAO();
         cdao.delete(ctm);
         // clear fields 
         CleanFields clean = new CleanFields();
         clean.cleanForm(panelPersonalData);
     }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void cbx_suppliersAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbx_suppliersAncestorAdded
+
+    }//GEN-LAST:event_cbx_suppliersAncestorAdded
+
+    private void cbx_suppliersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbx_suppliersMouseClicked
+
+    }//GEN-LAST:event_cbx_suppliersMouseClicked
+
+    private void cbx_suppliersComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cbx_suppliersComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbx_suppliersComponentShown
+
+    private void tableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableAncestorAdded
+        // access data object
+        SuppliersDAO pdao = new SuppliersDAO();
+        // create list access
+        List<Suppliers> listBox = pdao.listSuppliers();
+        // clear comboBox
+        cbx_suppliers.removeAllItems();
+        // Add Suppliers in list
+        for (Suppliers s : listBox) {
+            // add item comboBox -> Caution disable type variable comboBox (String -> Null)
+            cbx_suppliers.addItem(s);
+        }
+
+
+    }//GEN-LAST:event_tableAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -632,7 +681,7 @@ public class frmProducts extends javax.swing.JFrame {
     private javax.swing.JButton btn_save;
     private javax.swing.JButton btn_search;
     private javax.swing.JButton btn_search_describe;
-    private javax.swing.JComboBox<String> cbx_employees;
+    private javax.swing.JComboBox cbx_suppliers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;

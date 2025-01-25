@@ -21,4 +21,7 @@ public class Suppliers extends Customers {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+    
+    
+    
 }

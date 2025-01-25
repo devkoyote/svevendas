@@ -136,8 +136,12 @@ public class Customers {
     public void setState(String state) {
         this.state = state;
     }
-    
-    
+
+     // Override this Name 
+    @Override
+    public String toString() {
+        return this.getName();
+    }
     
     
 }

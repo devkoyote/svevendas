@@ -32,8 +32,8 @@ public class ProductDAO {
     public void save(Product prd) {
         try {
 
-            String sql = "INSERT INTO tb_produtos(descricao, preco, qtd_estoque, for_id)" + ""
-                    + " VALUES(?,?,?,?)";
+            String sql = "INSERT INTO tb_produtos(descricao, preco, qtd_estoque, for_id)"
+                    + "VALUES(?,?,?,?)";
 
             // Prepared Statement connection
             PreparedStatement pst = con.prepareStatement(sql);
@@ -56,7 +56,7 @@ public class ProductDAO {
     public void edit(Product prd) {
         try {
 
-            String sql = "UPDATE tb_produtos SET descricao=?, preco=?, qtd_estoque=?, for_id=?";
+            String sql = "UPDATE tb_produtos SET descricao=?, preco=?, qtd_estoque=?, for_id=? WHERE id=?";
 
             // Prepared Statement connection
             PreparedStatement pst = con.prepareStatement(sql);
@@ -65,6 +65,7 @@ public class ProductDAO {
             pst.setDouble(2, prd.getPrice());
             pst.setInt(3, prd.getQtd_Stock());
             pst.setInt(4, prd.getSuppliers().getId()); // foreing key
+            pst.setInt(5, prd.getId());
             
             // Execute put data
             pst.execute();
@@ -94,34 +95,25 @@ public class ProductDAO {
     }
 
     // Search Customer
-    public Customers Search(String name) {
+    public Product Search(String name) {
         try {
-            String sql = "SELECT * FROM tb_clientes WHERE nome=?";
+            String sql = "SELECT * FROM tb_produtos WHERE nome=?";
             // Prepared Statement with connection
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, name);
             // ResultSet to get query
             ResultSet rs = pst.executeQuery();
-            Customers ctm = new Customers();
+            Product prd = new Product();
             // IF RESULT -> NEXT (names of columns database)
             if (rs.next()) {
-                ctm.setId(rs.getInt("id"));
-                ctm.setName(rs.getString("nome"));
-                ctm.setRg(rs.getString("rg"));
-                ctm.setCpf(rs.getString("cpf"));
-                ctm.setEmail(rs.getString("email"));
-                ctm.setPhone(rs.getString("telefone"));
-                ctm.setMovel(rs.getString("celular"));
-                ctm.setCep(rs.getString("cep"));
-                ctm.setAddress(rs.getString("endereco"));
-                ctm.setNumberHouse(rs.getInt("numero"));
-                ctm.setComplement(rs.getString("complemento"));
-                ctm.setStreet(rs.getString("bairro"));
-                ctm.setCity(rs.getString("cidade"));
-                ctm.setState(rs.getString("estado"));
-
+                prd.setId(rs.getInt("id"));
+                prd.setDescribe(rs.getString("descricao"));
+                prd.setPrice(rs.getDouble("preco"));
+                prd.setQtd_Stock(rs.getInt("qtd_estoque"));
+                prd.setSuppliers((Suppliers) rs.getObject("for_id"));
+                
             }
-            return ctm;
+            return prd;
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro a pesquisa cliente: " + e);
@@ -160,10 +152,10 @@ public class ProductDAO {
     }
 
     // Search List 
-    public List<Customers> listSearchFilter(String name) {
-        List<Customers> list = new ArrayList<>();
+    public List<Product> listSearchFilter(String name) {
+        List<Product> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tb_clientes WHERE nome like ?";
+            String sql = "SELECT * FROM tb_produtos WHERE nome like ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
@@ -171,23 +163,14 @@ public class ProductDAO {
             // use next
             while (rs.next()) {
                 // add new Customer
-                Customers ctm = new Customers();
-                ctm.setId(rs.getInt("id"));
-                ctm.setName(rs.getString("nome"));
-                ctm.setRg(rs.getString("rg"));
-                ctm.setCpf(rs.getString("cpf"));
-                ctm.setEmail(rs.getString("email"));
-                ctm.setPhone(rs.getString("telefone"));
-                ctm.setMovel(rs.getString("celular"));
-                ctm.setCep(rs.getString("cep"));
-                ctm.setAddress(rs.getString("endereco"));
-                ctm.setNumberHouse(rs.getInt("numero"));
-                ctm.setComplement(rs.getString("complemento"));
-                ctm.setStreet(rs.getString("bairro"));
-                ctm.setCity(rs.getString("cidade"));
-                ctm.setState(rs.getString("estado"));
-                // add customer in list
-                list.add(ctm);
+                Product prd = new Product();
+                prd.setId(rs.getInt("id"));
+                prd.setDescribe(rs.getString("descricao"));
+                prd.setPrice(rs.getDouble("preco"));
+                prd.setQtd_Stock(rs.getInt("qtd_estoque"));
+                
+                // add product in list
+                list.add(prd);
             }
             return list;
         } catch (SQLException e) {

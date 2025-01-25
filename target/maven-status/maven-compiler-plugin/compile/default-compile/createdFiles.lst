@@ -1,6 +1,7 @@
 com\prizma\svevendas\view\frmCustomers$12.class
 com\prizma\svevendas\view\frmSuppliers$9.class
 com\prizma\svevendas\utils\CleanFields.class
+com\prizma\svevendas\view\frmProducts$15.class
 com\prizma\svevendas\view\frmMainScreen$4.class
 com\prizma\svevendas\view\frmEmployees.class
 com\prizma\svevendas\view\frmSuppliers$2.class
@@ -43,11 +44,13 @@ com\prizma\svevendas\view\frmSuppliers$15.class
 com\prizma\svevendas\view\frmSuppliers$1.class
 com\prizma\svevendas\view\frmLoginSecurity$4.class
 com\prizma\svevendas\view\frmCustomers$8.class
+com\prizma\svevendas\view\frmProducts$18.class
 com\prizma\svevendas\view\frmProducts$10.class
 com\prizma\svevendas\view\frmSuppliers$4.class
 com\prizma\svevendas\dao\SuppliersDAO.class
 com\prizma\svevendas\Svevendas.class
 com\prizma\svevendas\view\frmMainScreen$6.class
+com\prizma\svevendas\view\frmProducts$17.class
 com\prizma\svevendas\view\frmCustomers$7.class
 com\prizma\svevendas\view\frmEmployees$9.class
 com\prizma\svevendas\view\frmSuppliers.class
@@ -69,6 +72,7 @@ com\prizma\svevendas\view\frmEmployees$2.class
 com\prizma\svevendas\view\frmSuppliers$11.class
 com\prizma\svevendas\view\frmMainScreen$3.class
 com\prizma\svevendas\view\frmLoginSecurity$3.class
+com\prizma\svevendas\view\frmProducts$16.class
 com\prizma\svevendas\view\frmSuppliers$3.class
 com\prizma\svevendas\view\frmProducts$5.class
 com\prizma\svevendas\view\frmEmployees$3.class
