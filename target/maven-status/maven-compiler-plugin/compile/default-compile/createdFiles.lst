@@ -102,6 +102,7 @@ com\prizma\svevendas\view\frmProducts$5.class
 com\prizma\svevendas\view\frmSuppliers$10.class
 com\prizma\svevendas\view\frmStock$9.class
 com\prizma\svevendas\dao\CustomersDAO.class
+com\prizma\svevendas\view\frmMainScreen$10.class
 com\prizma\svevendas\view\frmCustomers$6.class
 com\prizma\svevendas\view\frmLoginSecurity$6.class
 com\prizma\svevendas\view\frmEmployees$11.class
