@@ -118,12 +118,27 @@ public class frmMainScreen extends javax.swing.JFrame {
         jMenu8.setText("Meus produtos");
 
         jMenuItem10.setText("Meus produtos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem10);
 
         jMenuItem4.setText("Controle de estoque");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem4);
 
         jMenuItem5.setText("Consulta de produtos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem5);
 
         jMenu4.add(jMenu8);
@@ -197,6 +212,23 @@ public class frmMainScreen extends javax.swing.JFrame {
         frmSuppliers fs = new frmSuppliers();
         fs.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        frmProducts fp = new frmProducts();
+        fp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        frmProducts consultProduct = new frmProducts();
+        //  Choosing the tab works like an array[positon]
+        consultProduct.panelGuides.setSelectedIndex(0);
+        consultProduct.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        frmStock fStock = new frmStock();
+        fStock.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

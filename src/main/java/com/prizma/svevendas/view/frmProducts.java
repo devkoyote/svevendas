@@ -87,7 +87,7 @@ public class frmProducts extends javax.swing.JFrame {
         btn_print = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Formulário de Clientes");
+        setTitle("Formulário de  Produtos");
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -663,7 +663,7 @@ public class frmProducts extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelProduct;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelConsultClient;
-    private javax.swing.JTabbedPane panelGuides;
+    public javax.swing.JTabbedPane panelGuides;
     private javax.swing.JPanel panelPersonalData;
     private javax.swing.JTable table;
     private javax.swing.JTextField txt_describe;

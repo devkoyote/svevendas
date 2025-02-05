@@ -185,5 +185,33 @@ public class ProductDAO {
         }
         return null;
     }
+    
+    public void addStock(int id, int quantity) {
+        try {
+            String sql = "UPDATE tb_produtos SET qtd_estoque=? WHERE id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, quantity);
+            pst.setInt(2, id);
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Adicionado com sucesso o estoque!");
+        } catch (SQLException e) {
+            JOptionPane.showConfirmDialog(null, "Erro ao adicionar estoque: " +e);
+        }
+    }
+    
+    public void downStock(int id, int quantity) {
+        try {
+            String sql = "UPDATE tb_produtos SET qtd_estoque=? WHERE id=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, quantity);
+            pst.setInt(2, id);
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Baixa do produto no estoque realizada!");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar da baixa do produto no estoque!" +e);
+        }
+    }
 
 }
