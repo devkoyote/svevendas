@@ -173,7 +173,7 @@ public class SuppliersDAO {
                 // add customer in list
                 list.add(sup);
             }
-            return list;
+            //return list;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao listar: " + e);
         }

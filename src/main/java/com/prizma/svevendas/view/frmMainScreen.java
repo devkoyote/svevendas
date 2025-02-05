@@ -46,6 +46,8 @@ public class frmMainScreen extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
@@ -113,11 +115,18 @@ public class frmMainScreen extends javax.swing.JFrame {
 
         jMenu4.setText("Produtos");
 
+        jMenu8.setText("Meus produtos");
+
+        jMenuItem10.setText("Meus produtos");
+        jMenu8.add(jMenuItem10);
+
         jMenuItem4.setText("Controle de estoque");
-        jMenu4.add(jMenuItem4);
+        jMenu8.add(jMenuItem4);
 
         jMenuItem5.setText("Consulta de produtos");
-        jMenu4.add(jMenuItem5);
+        jMenu8.add(jMenuItem5);
+
+        jMenu4.add(jMenu8);
 
         jMenuBar1.add(jMenu4);
 
@@ -232,8 +241,10 @@ public class frmMainScreen extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

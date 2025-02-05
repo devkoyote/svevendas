@@ -5,7 +5,6 @@
 package com.prizma.svevendas.dao;
 
 import com.prizma.svevendas.jdbc.ConnectionDatabase;
-import com.prizma.svevendas.model.Customers;
 import com.prizma.svevendas.model.Product;
 import com.prizma.svevendas.model.Suppliers;
 import java.sql.Connection;
@@ -97,26 +96,30 @@ public class ProductDAO {
     // Search Customer
     public Product Search(String name) {
         try {
-            String sql = "SELECT * FROM tb_produtos WHERE nome=?";
+            String sql = "SELECT p.id, p.descricao, p.preco, p.qtd_estoque, f.nome FROM tb_produtos AS p INNER JOIN tb_fornecedores AS f ON(p.for_id=f.id) WHERE p.descricao = ?";
             // Prepared Statement with connection
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, name);
             // ResultSet to get query
             ResultSet rs = pst.executeQuery();
             Product prd = new Product();
+            // Suppliers
+            Suppliers sup = new Suppliers();
             // IF RESULT -> NEXT (names of columns database)
             if (rs.next()) {
-                prd.setId(rs.getInt("id"));
-                prd.setDescribe(rs.getString("descricao"));
-                prd.setPrice(rs.getDouble("preco"));
-                prd.setQtd_Stock(rs.getInt("qtd_estoque"));
-                prd.setSuppliers((Suppliers) rs.getObject("for_id"));
+                prd.setId(rs.getInt("p.id"));
+                prd.setDescribe(rs.getString("p.descricao"));
+                prd.setPrice(rs.getDouble("p.preco"));
+                prd.setQtd_Stock(rs.getInt("p.qtd_estoque"));
+                sup.setName(rs.getString("f.nome"));
+                // config suppliers
+                prd.setSuppliers(sup);
                 
             }
             return prd;
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro a pesquisa cliente: " + e);
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar produto: " + e);
         }
 
         return null;
@@ -155,7 +158,7 @@ public class ProductDAO {
     public List<Product> listSearchFilter(String name) {
         List<Product> list = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM tb_produtos WHERE nome like ?";
+            String sql = "SELECT p.id, p.descricao, p.preco, p.qtd_estoque, f.nome FROM tb_produtos AS p INNER JOIN tb_fornecedores AS f ON(p.for_id=f.id) WHERE p.descricao like ?";
             PreparedStatement pst = con.prepareStatement(sql);
             pst.setString(1, name);
             ResultSet rs = pst.executeQuery();
@@ -164,11 +167,15 @@ public class ProductDAO {
             while (rs.next()) {
                 // add new Customer
                 Product prd = new Product();
-                prd.setId(rs.getInt("id"));
-                prd.setDescribe(rs.getString("descricao"));
-                prd.setPrice(rs.getDouble("preco"));
-                prd.setQtd_Stock(rs.getInt("qtd_estoque"));
+                Suppliers sup = new Suppliers();
                 
+                prd.setId(rs.getInt("p.id"));
+                prd.setDescribe(rs.getString("p.descricao"));
+                prd.setPrice(rs.getDouble("p.preco"));
+                prd.setQtd_Stock(rs.getInt("p.qtd_estoque"));
+                
+                sup.setName(rs.getString("f.nome"));
+                prd.setSuppliers(sup);
                 // add product in list
                 list.add(prd);
             }

@@ -11,7 +11,9 @@ import com.prizma.svevendas.model.Customers;
 import com.prizma.svevendas.model.Product;
 import com.prizma.svevendas.model.Suppliers;
 import com.prizma.svevendas.utils.CleanFields;
+import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -57,7 +59,7 @@ public class frmProducts extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelConsult = new javax.swing.JPanel();
+        jPanelProduct = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         panelGuides = new javax.swing.JTabbedPane();
         panelConsultClient = new javax.swing.JPanel();
@@ -93,24 +95,24 @@ public class frmProducts extends javax.swing.JFrame {
             }
         });
 
-        jPanelConsult.setBackground(new java.awt.Color(255, 32, 55));
+        jPanelProduct.setBackground(new java.awt.Color(255, 32, 55));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cadastro de Produtos");
 
-        javax.swing.GroupLayout jPanelConsultLayout = new javax.swing.GroupLayout(jPanelConsult);
-        jPanelConsult.setLayout(jPanelConsultLayout);
-        jPanelConsultLayout.setHorizontalGroup(
-            jPanelConsultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelConsultLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelProductLayout = new javax.swing.GroupLayout(jPanelProduct);
+        jPanelProduct.setLayout(jPanelProductLayout);
+        jPanelProductLayout.setHorizontalGroup(
+            jPanelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProductLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(250, 250, 250))
         );
-        jPanelConsultLayout.setVerticalGroup(
-            jPanelConsultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelConsultLayout.createSequentialGroup()
+        jPanelProductLayout.setVerticalGroup(
+            jPanelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelProductLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -236,6 +238,9 @@ public class frmProducts extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cbx_suppliersMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                cbx_suppliersMousePressed(evt);
+            }
         });
         cbx_suppliers.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -346,7 +351,7 @@ public class frmProducts extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelConsult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelProduct, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelGuides)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -365,7 +370,7 @@ public class frmProducts extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelConsult, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelProduct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(btn_new)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -408,31 +413,25 @@ public class frmProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_saveActionPerformed
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
-        // Capture this.name in txt_name
-//        String name = txt_describe.getText();
-//        Customers ctm = new Customers();
-//        CustomersDAO cdao = new CustomersDAO();
-//        // New customer = cdao -> method search
-//        ctm = cdao.Search(name);
-//        // if name != null
-//        if (ctm.getName() != null) {
-//            txt_id.setText(String.valueOf(ctm.getId()));
-//            txt_describe.setText(ctm.getName());
-//            txt_price.setText(ctm.getRg());
-//            txt_cpf.setText(ctm.getCpf());
-//            txt_stock.setText(ctm.getEmail());
-//            txt_phone.setText(ctm.getPhone());
-//            txt_movel.setText(ctm.getMovel());
-//            txt_cep.setText(ctm.getCep());
-//            txt_address.setText(ctm.getAddress());
-//            txt_number.setText(String.valueOf(ctm.getNumberHouse()));
-//            txt_complement.setText(ctm.getComplement());
-//            txt_city.setText(ctm.getCity());
-//            txt_street.setText(ctm.getStreet());
-//            cbx_employees.setSelectedItem(ctm.getState());
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
-//        }
+        String name = txt_describe.getText();
+        Product prd = new Product();
+        ProductDAO pdao = new ProductDAO();
+        Suppliers sup = new Suppliers();
+        SuppliersDAO sdao = new SuppliersDAO();
+
+        prd = pdao.Search(name);
+        if (prd.getDescribe() != null) {
+            txt_id.setText(String.valueOf(prd.getId()));
+            txt_describe.setText(prd.getDescribe());
+            txt_price.setText(String.valueOf(prd.getPrice()));
+            txt_stock.setText(String.valueOf(prd.getQtd_Stock()));
+            // obj -> suppliers
+            sup = sdao.Search(prd.getSuppliers().getName());
+            cbx_suppliers.getModel().setSelectedItem(sup);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+        }
     }//GEN-LAST:event_btn_searchActionPerformed
 
     private void btn_newActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_newActionPerformed
@@ -449,99 +448,73 @@ public class frmProducts extends javax.swing.JFrame {
         // Capture text digit
         String name = "%" + txt_describe_cc.getText() + "%";
 
-        CustomersDAO cdao = new CustomersDAO();
-        // get String name passed -> sql
-        List<Customers> list = cdao.listSearchFilter(name);
-        // Call DefaultTableModel
-        DefaultTableModel dtb = (DefaultTableModel) table.getModel();
-        // Set Colums rows
-        dtb.setNumRows(0);
-        // for 
-        for (Customers ctm : list) {
-            // put dtb -> list
-            dtb.addRow(new Object[]{
-                ctm.getId(),
-                ctm.getName(),
-                ctm.getRg(),
-                ctm.getCpf(),
-                ctm.getEmail(),
-                ctm.getPhone(),
-                ctm.getMovel(),
-                ctm.getCep(),
-                ctm.getAddress(),
-                ctm.getComplement(),
-                ctm.getNumberHouse(),
-                ctm.getCity(),
-                ctm.getStreet(),
-                ctm.getState()
+        ProductDAO pdao = new ProductDAO();
+        List<Product> list = pdao.listSearchFilter(name);
+        // Table
+        DefaultTableModel dataTable = (DefaultTableModel) table.getModel();
+        dataTable.setNumRows(0);
 
+        for (Product p : list) {
+            dataTable.addRow(new Object[]{
+                p.getId(),
+                p.getDescribe(),
+                p.getPrice(),
+                p.getQtd_Stock(),
+                p.getSuppliers().getName()
             });
         }
+
     }//GEN-LAST:event_btn_search_describeActionPerformed
 
     private void txt_describe_ccKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_describe_ccKeyReleased
         // Capture text digit
         String name = "%" + txt_describe_cc.getText() + "%";
 
-        CustomersDAO cdao = new CustomersDAO();
-        // get String name passed -> sql
-        List<Customers> list = cdao.listSearchFilter(name);
-        // Call DefaultTableModel
-        DefaultTableModel dtb = (DefaultTableModel) table.getModel();
-        // Set Colums rows
-        dtb.setNumRows(0);
-        // for 
-        for (Customers ctm : list) {
-            // put dtb -> list
-            dtb.addRow(new Object[]{
-                ctm.getId(),
-                ctm.getName(),
-                ctm.getRg(),
-                ctm.getCpf(),
-                ctm.getEmail(),
-                ctm.getPhone(),
-                ctm.getMovel(),
-                ctm.getCep(),
-                ctm.getAddress(),
-                ctm.getComplement(),
-                ctm.getNumberHouse(),
-                ctm.getCity(),
-                ctm.getStreet(),
-                ctm.getState()
+        ProductDAO pdao = new ProductDAO();
+        List<Product> list = pdao.listSearchFilter(name);
+        // Table
+        DefaultTableModel dataTable = (DefaultTableModel) table.getModel();
+        dataTable.setNumRows(0);
 
+        for (Product p : list) {
+            dataTable.addRow(new Object[]{
+                p.getId(),
+                p.getDescribe(),
+                p.getPrice(),
+                p.getQtd_Stock(),
+                p.getSuppliers().getName()
             });
         }
+
     }//GEN-LAST:event_txt_describe_ccKeyReleased
 
     private void txt_describeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_describeKeyPressed
-//        // if event key equals ENTER 
-//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            // Capture this.name in txt_name
-//            String name = txt_describe.getText();
-//            Customers ctm = new Customers();
-//            CustomersDAO cdao = new CustomersDAO();
-//            // New customer = cdao -> method search
-//            ctm = cdao.Search(name);
-//            // if name != null
-//            if (ctm.getName() != null) {
-//                txt_id.setText(String.valueOf(ctm.getId()));
-//                txt_describe.setText(ctm.getName());
-//                txt_price.setText(ctm.getRg());
-//                txt_cpf.setText(ctm.getCpf());
-//                txt_stock.setText(ctm.getEmail());
-//                txt_phone.setText(ctm.getPhone());
-//                txt_movel.setText(ctm.getMovel());
-//                txt_cep.setText(ctm.getCep());
-//                txt_address.setText(ctm.getAddress());
-//                txt_number.setText(String.valueOf(ctm.getNumberHouse()));
-//                txt_complement.setText(ctm.getComplement());
-//                txt_city.setText(ctm.getCity());
-//                txt_street.setText(ctm.getStreet());
-//                cbx_employees.setSelectedItem(ctm.getState());
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
-//            }
-//        }
+        // if event key equals ENTER 
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            // Capture this.name in txt_name
+            String name = txt_describe.getText();
+            Product prd = new Product();
+            ProductDAO pdao = new ProductDAO();
+
+            Suppliers sup = new Suppliers();
+            SuppliersDAO sdao = new SuppliersDAO();
+
+            // New customer = cdao -> method search
+            prd = pdao.Search(name);
+            // if name != null
+            if (prd.getDescribe() != null) {
+                txt_id.setText(String.valueOf(prd.getId()));
+                txt_describe.setText(prd.getDescribe());
+                txt_price.setText(String.valueOf(prd.getPrice()));
+                txt_stock.setText(String.valueOf(prd.getQtd_Stock()));
+
+                sup = sdao.Search(prd.getSuppliers().getName());
+                cbx_suppliers.getModel().setSelectedItem(sup);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado!");
+            }
+        }
 
     }//GEN-LAST:event_txt_describeKeyPressed
 
@@ -559,7 +532,7 @@ public class frmProducts extends javax.swing.JFrame {
         txt_describe.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
         txt_price.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
         txt_stock.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
-        
+
         // Set Supplier and method Search -> Reset ComboBox no risk duplicate
         Suppliers sup = new Suppliers();
         SuppliersDAO sdao = new SuppliersDAO();
@@ -568,42 +541,36 @@ public class frmProducts extends javax.swing.JFrame {
         cbx_suppliers.removeAllItems();
         // add in model comboBox
         cbx_suppliers.getModel().setSelectedItem(sup);
-        
+
     }//GEN-LAST:event_tableMouseClicked
 
     private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-//        // edit and save
-//        Customers ct = new Customers();
-//
-//        ct.setName(txt_describe.getText());
-//        ct.setRg(txt_price.getText());
-//        ct.setCpf(txt_cpf.getText());
-//        ct.setEmail(txt_stock.getText());
-//        ct.setPhone(txt_phone.getText());
-//        ct.setMovel(txt_movel.getText());
-//        ct.setCep(txt_cep.getText());
-//        ct.setAddress(txt_address.getText());
-//        ct.setNumberHouse(Integer.parseInt(txt_number.getText()));
-//        ct.setComplement(txt_complement.getText());
-//        ct.setCity(txt_city.getText());
-//        ct.setStreet(txt_street.getText());
-//        ct.setState(cbx_employees.getSelectedItem().toString());
-//        ct.setId(Integer.valueOf(txt_id.getText()));
-//
+
+        Product prd = new Product();
+
+        prd.setId(Integer.parseInt(txt_id.getText()));
+        prd.setDescribe(txt_describe.getText());
+        prd.setPrice(Double.parseDouble(txt_price.getText()));
+        prd.setQtd_Stock(Integer.parseInt(txt_stock.getText()));
+        // add comboBox OBJ -> ComboBox
+        Suppliers sup = new Suppliers();
+        sup = (Suppliers) cbx_suppliers.getSelectedItem();
+        prd.setSuppliers(sup);
+
 //        // Call method saveDAO
-//        CustomersDAO cdao = new CustomersDAO();
-//        cdao.edit(ct);
-//        CleanFields cls = new CleanFields();
-//        cls.cleanForm(panelPersonalData);
+        ProductDAO pdao = new ProductDAO();
+        pdao.edit(prd);
+        CleanFields cls = new CleanFields();
+        cls.cleanForm(panelPersonalData);
 
     }//GEN-LAST:event_btn_editActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
         //Action delete customer for id
-        Customers ctm = new Customers();
-        ctm.setId(Integer.parseInt(txt_id.getText()));
-        CustomersDAO cdao = new CustomersDAO();
-        cdao.delete(ctm);
+        Product prd = new Product();
+        prd.setId(Integer.parseInt(txt_id.getText()));
+        ProductDAO pdao = new ProductDAO();
+        pdao.delete(prd);
         // clear fields 
         CleanFields clean = new CleanFields();
         clean.cleanForm(panelPersonalData);
@@ -614,7 +581,20 @@ public class frmProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_cbx_suppliersAncestorAdded
 
     private void cbx_suppliersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbx_suppliersMouseClicked
-
+        // TODO add your handling code here:
+        // access data object
+        Suppliers sup = new Suppliers();
+        SuppliersDAO pdao = new SuppliersDAO();
+        // clear comboBox
+        cbx_suppliers.removeAllItems();
+        // create list access
+        List<Suppliers> listBox = pdao.listSuppliers();
+        
+        // Add Suppliers in list
+        for (Suppliers s : listBox) {
+            // add item comboBox -> Caution disable type variable comboBox (String -> Null)
+            cbx_suppliers.addItem(s);
+        }
     }//GEN-LAST:event_cbx_suppliersMouseClicked
 
     private void cbx_suppliersComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cbx_suppliersComponentShown
@@ -622,20 +602,11 @@ public class frmProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_cbx_suppliersComponentShown
 
     private void tableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableAncestorAdded
-        // access data object
-        SuppliersDAO pdao = new SuppliersDAO();
-        // create list access
-        List<Suppliers> listBox = pdao.listSuppliers();
-        // clear comboBox
-        cbx_suppliers.removeAllItems();
-        // Add Suppliers in list
-        for (Suppliers s : listBox) {
-            // add item comboBox -> Caution disable type variable comboBox (String -> Null)
-            cbx_suppliers.addItem(s);
-        }
-
-
     }//GEN-LAST:event_tableAncestorAdded
+
+    private void cbx_suppliersMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbx_suppliersMousePressed
+
+    }//GEN-LAST:event_cbx_suppliersMousePressed
 
     /**
      * @param args the command line arguments
@@ -689,7 +660,7 @@ public class frmProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanelConsult;
+    private javax.swing.JPanel jPanelProduct;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelConsultClient;
     private javax.swing.JTabbedPane panelGuides;
