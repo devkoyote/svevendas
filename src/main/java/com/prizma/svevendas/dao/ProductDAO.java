@@ -124,6 +124,40 @@ public class ProductDAO {
 
         return null;
     }
+    
+     // Search Customer
+    public Product SearchProductId(int id) {
+        try {
+            String sql = "SELECT p.id, p.descricao, p.preco, p.qtd_estoque, f.nome FROM tb_produtos AS p INNER JOIN tb_fornecedores AS f ON(p.for_id=f.id) WHERE p.id = ?";
+            // Prepared Statement with connection
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, id);
+            // ResultSet to get query
+            ResultSet rs = pst.executeQuery();
+            Product prd = new Product();
+            // Suppliers
+            Suppliers sup = new Suppliers();
+            // IF RESULT -> NEXT (names of columns database)
+            if (rs.next()) {
+                prd.setId(rs.getInt("p.id"));
+                prd.setDescribe(rs.getString("p.descricao"));
+                prd.setPrice(rs.getDouble("p.preco"));
+                prd.setQtd_Stock(rs.getInt("p.qtd_estoque"));
+                sup.setName(rs.getString("f.nome"));
+                // config suppliers
+                prd.setSuppliers(sup);
+                
+            }
+            return prd;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar produto: " + e);
+        }
+
+        return null;
+    }
+    
+    
 
     // Method List 
     public List<Product> listProduct() {

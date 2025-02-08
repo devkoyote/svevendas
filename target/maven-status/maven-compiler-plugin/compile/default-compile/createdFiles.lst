@@ -1,6 +1,7 @@
 com\prizma\svevendas\view\frmProducts$15.class
 com\prizma\svevendas\view\frmMainScreen$4.class
 com\prizma\svevendas\view\frmSuppliers$2.class
+com\prizma\svevendas\view\frmSales$6.class
 com\prizma\svevendas\view\frmProducts$1.class
 com\prizma\svevendas\view\frmSuppliers$13.class
 com\prizma\svevendas\model\Employees.class
@@ -44,6 +45,7 @@ com\prizma\svevendas\view\frmStock$7.class
 com\prizma\svevendas\view\frmCustomers$11.class
 com\prizma\svevendas\view\frmMainScreen.class
 com\prizma\svevendas\view\frmProducts$14.class
+com\prizma\svevendas\view\frmSales$8.class
 com\prizma\svevendas\view\frmEmployees$2.class
 com\prizma\svevendas\view\frmMainScreen$3.class
 com\prizma\svevendas\view\frmStock$10.class
@@ -58,6 +60,7 @@ com\prizma\svevendas\dao\EmployeesDAO.class
 com\prizma\svevendas\model\Customers.class
 com\prizma\svevendas\view\frmProducts$9.class
 com\prizma\svevendas\view\frmProducts$13.class
+com\prizma\svevendas\view\frmSales$7.class
 com\prizma\svevendas\view\frmCustomers$3.class
 com\prizma\svevendas\view\frmStock$11.class
 com\prizma\svevendas\view\frmStock$6.class
@@ -78,6 +81,7 @@ com\prizma\svevendas\view\frmEmployees$12.class
 com\prizma\svevendas\view\frmProducts$8.class
 com\prizma\svevendas\view\frmStock$2.class
 com\prizma\svevendas\view\frmMainScreen$5.class
+com\prizma\svevendas\view\frmSales$5.class
 com\prizma\svevendas\view\frmProducts$11.class
 com\prizma\svevendas\tests\TestConnectionJDBC.class
 com\prizma\svevendas\dao\ProductDAO.class
