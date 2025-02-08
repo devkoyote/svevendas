@@ -7,6 +7,7 @@ C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\c
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Customers.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Employees.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Product.java
+C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Sales.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Suppliers.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\Svevendas.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\tests\TestConnectionJDBC.java
@@ -16,5 +17,6 @@ C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\c
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmLoginSecurity.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmMainScreen.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmProducts.java
+C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmSales.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmStock.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmSuppliers.java

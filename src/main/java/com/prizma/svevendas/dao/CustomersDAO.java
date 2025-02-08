@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class CustomersDAO {
 
+   
     // Connection JDBC
     Connection con;
 
@@ -94,10 +95,10 @@ public class CustomersDAO {
         }
 
     }
-    
+
     // Delete Customers
     public void delete(Customers ctm) {
-    
+
         try {
             String sql = "DELETE FROM tb_clientes WHERE id=?";
             PreparedStatement pst = con.prepareStatement(sql);
@@ -106,9 +107,9 @@ public class CustomersDAO {
             pst.close();
             JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar excluir cliente! " +e);
+            JOptionPane.showMessageDialog(null, "Erro ao tentar excluir cliente! " + e);
         }
-    
+
     }
 
     // Search Customer
@@ -218,6 +219,42 @@ public class CustomersDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao listar: " + e);
         }
+        return null;
+    }
+
+    public Customers SearchCustomerCPF(String cpf) {
+        try {
+            String sql = "SELECT * FROM tb_clientes WHERE cpf=?";
+            // Prepared Statement with connection
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, cpf);
+            // ResultSet to get query
+            ResultSet rs = pst.executeQuery();
+            Customers ctm = new Customers();
+            // IF RESULT -> NEXT (names of columns database)
+            if (rs.next()) {
+                ctm.setId(rs.getInt("id"));
+                ctm.setName(rs.getString("nome"));
+                ctm.setRg(rs.getString("rg"));
+                ctm.setCpf(rs.getString("cpf"));
+                ctm.setEmail(rs.getString("email"));
+                ctm.setPhone(rs.getString("telefone"));
+                ctm.setMovel(rs.getString("celular"));
+                ctm.setCep(rs.getString("cep"));
+                ctm.setAddress(rs.getString("endereco"));
+                ctm.setNumberHouse(rs.getInt("numero"));
+                ctm.setComplement(rs.getString("complemento"));
+                ctm.setStreet(rs.getString("bairro"));
+                ctm.setCity(rs.getString("cidade"));
+                ctm.setState(rs.getString("estado"));
+
+            }
+            return ctm;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro a pesquisa cliente: " + e);
+        }
+
         return null;
     }
 
