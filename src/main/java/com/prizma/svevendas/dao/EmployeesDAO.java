@@ -5,7 +5,6 @@
 package com.prizma.svevendas.dao;
 
 import com.prizma.svevendas.jdbc.ConnectionDatabase;
-import com.prizma.svevendas.model.Customers;
 import com.prizma.svevendas.model.Employees;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

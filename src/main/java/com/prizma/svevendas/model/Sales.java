@@ -24,14 +24,15 @@ public class Sales {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public Customers getCustomers() {
         return customers;
     }
-    
-    public void Customers(Customers customers) {
+
+    public void setCustomers(Customers customers) {
         this.customers = customers;
     }
+
     
     public String getDate() {
         return date;
@@ -40,15 +41,7 @@ public class Sales {
     public void setDate(String date) {
         this.date = date;
     }
-    
-    public double getTotal_Sales() {
-        return total_sales;
-    }
-    
-    public void setTotal_Sales(double totalSales) {
-        this.total_sales = totalSales;
-    }
-    
+       
     public String getObservations() {
         return observations;
     }
@@ -56,6 +49,15 @@ public class Sales {
     public void setObservations(String observations) {
         this.observations = observations;
     }
+    
+    public double getTotal_sales() {
+        return total_sales;
+    }
+
+    public void setTotal_sales(double total_sales) {
+        this.total_sales = total_sales;
+    }
+    
     
     
 }

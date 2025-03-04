@@ -1,11 +1,14 @@
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\CustomersDAO.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\EmployeesDAO.java
+C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\ItemSaleDAO.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\ProductDAO.java
+C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\SalesDAO.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\SecurityLoginDAO.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\dao\SuppliersDAO.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\jdbc\ConnectionDatabase.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Customers.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Employees.java
+C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\ItemSales.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Product.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Sales.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\model\Suppliers.java
@@ -16,6 +19,7 @@ C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\c
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmEmployees.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmLoginSecurity.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmMainScreen.java
+C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmPayment.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmProducts.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmSales.java
 C:\Users\alenc\Documents\workspace\java\sistema_vendas\svevendas\src\main\java\com\prizma\svevendas\view\frmStock.java

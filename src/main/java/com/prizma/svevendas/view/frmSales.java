@@ -15,6 +15,7 @@ import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,9 +28,17 @@ public class frmSales extends javax.swing.JFrame {
     /**
      * Variables Global
      */
+    
+    double price, subtotal, total;
+    int quantity;
+    DefaultTableModel my_products;
+    Customers ctm = new Customers();
+    
     public frmSales() {
         initComponents();
     }
+    
+    
 
     /* Functions extras
     ** List table Product
@@ -93,8 +102,9 @@ public class frmSales extends javax.swing.JFrame {
         txt_discount = new javax.swing.JTextField();
         btn_add_stock = new javax.swing.JButton();
         btn_clear = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         tbl_shooping_cart = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        shopping_cart = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         txt_total_sales = new javax.swing.JTextField();
@@ -158,6 +168,12 @@ public class frmSales extends javax.swing.JFrame {
 
         jLabel5.setText("Pesquisa de Produto:");
 
+        txt_search_product.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_search_productKeyReleased(evt);
+            }
+        });
+
         btn_name_search.setText("Pesquisar");
         btn_name_search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,14 +232,28 @@ public class frmSales extends javax.swing.JFrame {
 
         txt_price.setEnabled(false);
 
+        txt_amount.setText("1");
+
         txt_stock.setEnabled(false);
 
         btn_add_stock.setText("Adicionar");
+        btn_add_stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_add_stockActionPerformed(evt);
+            }
+        });
 
         btn_clear.setText("Limpar");
         btn_clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_clearActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -240,8 +270,11 @@ public class frmSales extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_product, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txt_id, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelProductLayout.createSequentialGroup()
+                                .addComponent(txt_product, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))))
                     .addGroup(panelProductLayout.createSequentialGroup()
                         .addGroup(panelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProductLayout.createSequentialGroup()
@@ -256,7 +289,7 @@ public class frmSales extends javax.swing.JFrame {
                         .addComponent(btn_add_stock)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btn_clear)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGap(105, 105, 105)
                 .addGroup(panelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelProductLayout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -281,7 +314,8 @@ public class frmSales extends javax.swing.JFrame {
                     .addGroup(panelProductLayout.createSequentialGroup()
                         .addGroup(panelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(txt_product, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_product, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
                         .addGap(18, 18, 18)
                         .addGroup(panelProductLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
@@ -324,7 +358,7 @@ public class frmSales extends javax.swing.JFrame {
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(txt_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 212, Short.MAX_VALUE))
+                                                .addGap(0, 0, Short.MAX_VALUE))
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(txt_name)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -332,7 +366,8 @@ public class frmSales extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txt_search_product)))
+                                        .addComponent(txt_search_product)
+                                        .addGap(98, 98, 98)))
                                 .addGap(79, 79, 79)
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -367,18 +402,15 @@ public class frmSales extends javax.swing.JFrame {
 
         tbl_shooping_cart.setBorder(javax.swing.BorderFactory.createTitledBorder("Carrinho de Compras"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        shopping_cart.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Codigo", "Produto", "Quantidade", "Preço", "Sub. Total"
             }
         ));
-        tbl_shooping_cart.setViewportView(jTable1);
+        tbl_shooping_cart.setViewportView(shopping_cart);
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Total de Vendas"));
 
@@ -412,6 +444,11 @@ public class frmSales extends javax.swing.JFrame {
         );
 
         btn_receive_payment.setText("Receber Pagamento");
+        btn_receive_payment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_receive_paymentActionPerformed(evt);
+            }
+        });
 
         btn_cancel_sale.setText("Cancelar Venda");
 
@@ -461,11 +498,12 @@ public class frmSales extends javax.swing.JFrame {
 
     private void tbl_productMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_productMouseClicked
         // Get the values in row of table and set in textFields
-        txt_id.setText(tbl_product.getValueAt(tbl_product.getSelectedRow(),0).toString());
+        txt_id.setText(tbl_product.getValueAt(tbl_product.getSelectedRow(), 0).toString());
         txt_product.setText(tbl_product.getValueAt(tbl_product.getSelectedRow(), 1).toString());
         txt_price.setText(tbl_product.getValueAt(tbl_product.getSelectedRow(), 2).toString());
         txt_stock.setText(tbl_product.getValueAt(tbl_product.getSelectedRow(), 3).toString());
-        
+        txt_id.setEnabled(false);
+
     }//GEN-LAST:event_tbl_productMouseClicked
 
     private void txt_cpfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cpfKeyReleased
@@ -512,25 +550,25 @@ public class frmSales extends javax.swing.JFrame {
         txt_date.setText(String.valueOf(sdf.format(dateNow)));
         // List Products in table
         listProducts();
-        
+
     }//GEN-LAST:event_formWindowActivated
 
     private void txt_idKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_idKeyPressed
         // key event
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             int id = Integer.valueOf(txt_id.getText());
             Product prd = new Product();
             ProductDAO pdao = new ProductDAO();
-            
+
             prd = pdao.SearchProductId(id);
             // verify id != 0 n' converter types
-            if(prd.getId() != 0) {
+            if (prd.getId() != 0) {
                 txt_id.setText(String.valueOf(prd.getId()));
                 txt_product.setText(prd.getDescribe());
                 txt_price.setText(String.valueOf(prd.getPrice()));
                 txt_stock.setText(String.valueOf(prd.getQtd_Stock()));
-            }
-            else {
+                txt_id.setEnabled(false);
+            } else {
                 JOptionPane.showMessageDialog(null, "Código não encontrado!");
             }
         }
@@ -539,7 +577,116 @@ public class frmSales extends javax.swing.JFrame {
     private void btn_clearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clearActionPerformed
         CleanFields cf = new CleanFields();
         cf.cleanForm(panelProduct);
+        cf.cleanForm(jPanel2);
+        cf.cleanForm(jPanel4);
+        txt_id.setEnabled(true);
+        txt_id.requestFocus();
     }//GEN-LAST:event_btn_clearActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int id = Integer.valueOf(txt_id.getText());
+        Product prd = new Product();
+        ProductDAO pdao = new ProductDAO();
+
+        prd = pdao.SearchProductId(id);
+        // verify id != 0 n' converter types
+        if (prd.getId() != 0) {
+            txt_id.setText(String.valueOf(prd.getId()));
+            txt_product.setText(prd.getDescribe());
+            txt_price.setText(String.valueOf(prd.getPrice()));
+            txt_stock.setText(String.valueOf(prd.getQtd_Stock()));
+            txt_id.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Código não encontrado!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_search_productKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_search_productKeyReleased
+                 // Capture text digit
+        String name = "%" + txt_search_product.getText() + "%";
+
+        ProductDAO pdao = new ProductDAO();
+        List<Product> list = pdao.listSearchFilter(name);
+        // Table
+        DefaultTableModel dataTable = (DefaultTableModel) tbl_product.getModel();
+        dataTable.setNumRows(0);
+
+        for (Product p : list) {
+            dataTable.addRow(new Object[]{
+                p.getId(),
+                p.getDescribe(),
+                p.getPrice(),
+                p.getQtd_Stock(),
+                p.getSuppliers().getName()
+            });
+            txt_id.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_txt_search_productKeyReleased
+
+    private void btn_add_stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_stockActionPerformed
+        String name = txt_product.getText();
+        Product prd = new Product();
+        ProductDAO pdao = new ProductDAO();
+        prd = pdao.Search(name);
+        
+        if(prd.getDescribe() != null) {
+            int stock = Integer.valueOf(txt_stock.getText());
+            int qtd = Integer.valueOf(txt_amount.getText());
+            price = Double.valueOf(txt_price.getText());
+            quantity = Integer.valueOf(txt_amount.getText());
+            subtotal = price*quantity;
+            total += subtotal;
+            
+            if(stock >= qtd) {
+                txt_total_sales.setText(String.valueOf(total));
+                my_products= (DefaultTableModel) shopping_cart.getModel();
+                my_products.addRow(new Object[]{
+                    txt_id.getText(),
+                    txt_product.getText(),
+                    txt_amount.getText(),
+                    txt_price.getText(),
+                    subtotal
+                });
+                
+                 // Atualiza a interface gráfica
+            shopping_cart.revalidate();
+            shopping_cart.repaint();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "A quantidade desejada é maior \n que o estoque disponivel!");
+            }
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Não foi possivel adicionar ao carrinho de compras, Faltam informações!");
+        }
+    }//GEN-LAST:event_btn_add_stockActionPerformed
+
+    private void btn_receive_paymentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_receive_paymentActionPerformed
+        String name = txt_name.getText();
+        String cpf = txt_cpf.getText();
+        ctm = new Customers();
+        CustomersDAO cdao = new CustomersDAO();
+        ctm = cdao.Search(name);
+        ctm = cdao.SearchCustomerCPF(cpf);
+        
+        if(ctm.getName() != null && ctm.getCpf() != null) {
+            frmPayment screenPayment = new frmPayment();
+            screenPayment.ctm = ctm;
+            screenPayment.my_products = my_products;
+            screenPayment.txt_total.setText(String.valueOf(total));
+            // screen visible true
+            screenPayment.setVisible(true);
+            // close screen actualy
+            this.dispose();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Verifique se está preenchido o Nome e o CPF!");
+        }
+        
+        
+    }//GEN-LAST:event_btn_receive_paymentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -581,7 +728,8 @@ public class frmSales extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancel_sale;
     private javax.swing.JButton btn_clear;
     private javax.swing.JButton btn_name_search;
-    private javax.swing.JButton btn_receive_payment;
+    public javax.swing.JButton btn_receive_payment;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -598,9 +746,9 @@ public class frmSales extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelProduct;
-    private javax.swing.JTable tbl_product;
+    private javax.swing.JTable shopping_cart;
+    public javax.swing.JTable tbl_product;
     private javax.swing.JScrollPane tbl_shooping_cart;
     private javax.swing.JTextField txt_amount;
     private javax.swing.JFormattedTextField txt_cpf;
