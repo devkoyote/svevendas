@@ -5,11 +5,15 @@
 package com.prizma.svevendas.dao;
 
 import com.prizma.svevendas.jdbc.ConnectionDatabase;
+import com.prizma.svevendas.model.Customers;
 import com.prizma.svevendas.model.Sales;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,5 +61,33 @@ public class SalesDAO {
             throw new RuntimeException("Erro ao retorna o ultimo id da venda!");
         }
     }
+    
+    public List<Sales>HistorySales(LocalDate start_date, LocalDate end_date){
+        try {
+            List<Sales>list = new ArrayList<>();
+            String sql = "SELECT v.id, c.nome, date_format(v.data_venda, '%d%m%Y') AS data_formatada, v.total_venda, v.observacoes FROM tb_vendas AS v INNER JOIN tb_clientes AS c ON(v.cliente_id=c.id) WHERE v.data_venda BETWEEN ? AND ?";
+            
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, start_date.toString());
+            pst.setString(2, end_date.toString());
+            
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()) {
+                Sales sale = new Sales();
+                Customers ctm = new Customers();
+                sale.setId(rs.getInt("v.id"));
+                ctm.setName(rs.getString("c.nome"));
+                sale.setCustomers(ctm);
+                sale.setDate(rs.getString("data_formatada"));
+                sale.setTotal_sales(rs.getDouble("v.total_venda"));
+                sale.setObservations(rs.getString("v.observacoes"));
+                list.add(sale);
+            }
+            return list;    
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao criar historico de venda! "+e);
+        }
+        
+    } 
 
 }

@@ -15,6 +15,7 @@ com\prizma\svevendas\model\Product.class
 com\prizma\svevendas\view\frmCustomers$1.class
 com\prizma\svevendas\view\frmCustomers$13.class
 com\prizma\svevendas\view\frmEmployees$5.class
+com\prizma\svevendas\view\frmHistory$1.class
 com\prizma\svevendas\view\frmProducts$7.class
 com\prizma\svevendas\view\frmSales$3.class
 com\prizma\svevendas\view\frmSuppliers$8.class
@@ -77,6 +78,7 @@ com\prizma\svevendas\view\frmStock$5.class
 com\prizma\svevendas\view\frmEmployees.class
 com\prizma\svevendas\jdbc\ConnectionDatabase.class
 com\prizma\svevendas\view\frmCustomers$2.class
+com\prizma\svevendas\view\frmHistory$2.class
 com\prizma\svevendas\view\frmEmployees$4.class
 com\prizma\svevendas\view\frmSales$2.class
 com\prizma\svevendas\view\frmEmployees$7.class
@@ -119,6 +121,7 @@ com\prizma\svevendas\view\frmLoginSecurity$5.class
 com\prizma\svevendas\view\frmSuppliers$11.class
 com\prizma\svevendas\view\frmProducts$16.class
 com\prizma\svevendas\view\frmProducts$5.class
+com\prizma\svevendas\view\frmHistory.class
 com\prizma\svevendas\view\frmSuppliers$10.class
 com\prizma\svevendas\view\frmStock$9.class
 com\prizma\svevendas\dao\CustomersDAO.class
