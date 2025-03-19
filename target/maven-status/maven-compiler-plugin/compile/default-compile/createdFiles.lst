@@ -9,6 +9,7 @@ com\prizma\svevendas\view\frmMainScreen$1.class
 com\prizma\svevendas\view\frmProducts$12.class
 com\prizma\svevendas\view\frmCustomers$9.class
 com\prizma\svevendas\view\frmCustomers.class
+com\prizma\svevendas\view\frmSaleDetail$1.class
 com\prizma\svevendas\view\frmSuppliers$5.class
 com\prizma\svevendas\view\frmEmployees$13.class
 com\prizma\svevendas\model\Product.class
@@ -46,6 +47,7 @@ com\prizma\svevendas\view\frmLoginSecurity$2.class
 com\prizma\svevendas\view\frmCustomers$4.class
 com\prizma\svevendas\view\frmProducts$3.class
 com\prizma\svevendas\view\frmSuppliers$14.class
+com\prizma\svevendas\view\frmHistory$4.class
 com\prizma\svevendas\view\frmStock$7.class
 com\prizma\svevendas\view\frmCustomers$11.class
 com\prizma\svevendas\view\frmMainScreen.class
@@ -58,6 +60,7 @@ com\prizma\svevendas\view\frmLoginSecurity$3.class
 com\prizma\svevendas\view\frmSales$10.class
 com\prizma\svevendas\view\frmSuppliers$3.class
 com\prizma\svevendas\view\frmEmployees$3.class
+com\prizma\svevendas\view\frmHistory$3.class
 com\prizma\svevendas\view\frmEmployees$15.class
 com\prizma\svevendas\view\frmProducts$2.class
 com\prizma\svevendas\model\Suppliers.class
@@ -85,6 +88,7 @@ com\prizma\svevendas\view\frmEmployees$7.class
 com\prizma\svevendas\view\frmMainScreen$8.class
 com\prizma\svevendas\view\frmStock.class
 com\prizma\svevendas\view\frmStock$13.class
+com\prizma\svevendas\view\frmSaleDetail.class
 com\prizma\svevendas\view\frmEmployees$12.class
 com\prizma\svevendas\view\frmProducts$8.class
 com\prizma\svevendas\view\frmStock$2.class
@@ -121,6 +125,7 @@ com\prizma\svevendas\view\frmLoginSecurity$5.class
 com\prizma\svevendas\view\frmSuppliers$11.class
 com\prizma\svevendas\view\frmProducts$16.class
 com\prizma\svevendas\view\frmProducts$5.class
+com\prizma\svevendas\view\frmSaleDetail$2.class
 com\prizma\svevendas\view\frmHistory.class
 com\prizma\svevendas\view\frmSuppliers$10.class
 com\prizma\svevendas\view\frmStock$9.class

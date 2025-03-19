@@ -4,7 +4,9 @@
  */
 package com.prizma.svevendas.view;
 
+import com.prizma.svevendas.dao.ItemSaleDAO;
 import com.prizma.svevendas.dao.SalesDAO;
+import com.prizma.svevendas.model.ItemSales;
 import com.prizma.svevendas.model.Sales;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -126,6 +128,12 @@ public class frmHistory extends javax.swing.JFrame {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
+        jScrollPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jScrollPaneMouseClicked(evt);
+            }
+        });
+
         tbl_history.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -134,6 +142,11 @@ public class frmHistory extends javax.swing.JFrame {
                 "Codigo", "Cliente", "Data da Venda", "Total da Venda", "Observações"
             }
         ));
+        tbl_history.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl_historyMouseClicked(evt);
+            }
+        });
         jScrollPane.setViewportView(tbl_history);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,6 +193,40 @@ public class frmHistory extends javax.swing.JFrame {
             });
         }
     }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void jScrollPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPaneMouseClicked
+
+    }//GEN-LAST:event_jScrollPaneMouseClicked
+
+    private void tbl_historyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl_historyMouseClicked
+        frmSaleDetail fsd = new frmSaleDetail();
+        fsd.txt_sale_id.setText(tbl_history.getValueAt(tbl_history.getSelectedRow(), 0).toString());
+        fsd.txt_sale_customer.setText(tbl_history.getValueAt(tbl_history.getSelectedRow(), 1).toString());
+        fsd.txt_sale_date.setText(tbl_history.getValueAt(tbl_history.getSelectedRow(), 2).toString());
+        fsd.txt_sale_total.setText(tbl_history.getValueAt(tbl_history.getSelectedRow(), 3).toString());
+        fsd.txt_sale_observation.setText(tbl_history.getValueAt(tbl_history.getSelectedRow(), 4).toString());
+        
+        int sale_id = Integer.valueOf(fsd.txt_sale_id.getText());
+        ItemSaleDAO idao = new ItemSaleDAO();
+        
+        List<ItemSales> list = idao.listItems(sale_id);
+        // Table
+        DefaultTableModel dtm = (DefaultTableModel) fsd.shopping_cart_details.getModel();
+        for(ItemSales i : list){
+            dtm.addRow(new Object[]{
+                i.getProduct().getId(),
+                i.getProduct().getDescribe(),
+                i.getQuantity(),
+                i.getProduct().getPrice(),
+                i.getSubtotal()
+            
+            });
+        }
+        
+        
+        fsd.setVisible(true);
+        
+    }//GEN-LAST:event_tbl_historyMouseClicked
 
     /**
      * @param args the command line arguments
