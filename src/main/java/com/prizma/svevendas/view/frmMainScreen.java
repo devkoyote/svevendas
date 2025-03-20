@@ -7,6 +7,7 @@ package com.prizma.svevendas.view;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -55,7 +56,8 @@ public class frmMainScreen extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
+        menu_user_switch = new javax.swing.JMenuItem();
+        m_exit_system = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -164,14 +166,28 @@ public class frmMainScreen extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu6.setText("Configurações");
+
+        menu_user_switch.setText("Trocar de Usuário");
+        menu_user_switch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_user_switchActionPerformed(evt);
+            }
+        });
+        jMenu6.add(menu_user_switch);
+
         jMenuBar1.add(jMenu6);
 
-        jMenu7.setText("Sair");
+        m_exit_system.setText("Sair");
 
         jMenuItem9.setText("Fechar sistema");
-        jMenu7.add(jMenuItem9);
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        m_exit_system.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu7);
+        jMenuBar1.add(m_exit_system);
 
         setJMenuBar(jMenuBar1);
 
@@ -230,6 +246,24 @@ public class frmMainScreen extends javax.swing.JFrame {
         fStock.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void menu_user_switchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_user_switchActionPerformed
+        frmLoginSecurity login = new frmLoginSecurity();
+        this.dispose();
+        login.setVisible(true);
+    }//GEN-LAST:event_menu_user_switchActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        int window = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair do sistema ?");
+        
+        if(window == 0){
+            System.exit(0);
+        }
+        else if(window == 2) {
+            JOptionPane.showMessageDialog(null, "Cancelado a saída do sistema!");
+        }
+        
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,7 +306,6 @@ public class frmMainScreen extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -285,6 +318,8 @@ public class frmMainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu m_exit_system;
+    private javax.swing.JMenuItem menu_user_switch;
     private javax.swing.JDesktopPane panelDesktop;
     // End of variables declaration//GEN-END:variables
 }

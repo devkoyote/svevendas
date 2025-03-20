@@ -546,7 +546,7 @@ public class frmSales extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         Date dateNow = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY | HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
         txt_date.setText(String.valueOf(sdf.format(dateNow)));
         // List Products in table
         listProducts();

@@ -89,5 +89,24 @@ public class SalesDAO {
         }
         
     } 
+    
+    public double positionOfDay(LocalDate date_sale) {
+        try {
+            double total_sale_day = 0;
+            String sql = "SELECT SUM(total_venda) AS total FROM tb_vendas WHERE data_venda=?";
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setString(1, date_sale.toString());
+            ResultSet rs = pst.executeQuery();
+            
+            if(rs.next()) {
+                total_sale_day = rs.getDouble("total");
+                
+            }
+            return total_sale_day;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao retornar a posição do dia: "+e);
+        }
+    }
 
 }

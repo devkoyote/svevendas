@@ -30,6 +30,7 @@ com\prizma\svevendas\model\Sales.class
 com\prizma\svevendas\view\frmEmployees$8.class
 com\prizma\svevendas\view\frmMainScreen$9.class
 com\prizma\svevendas\view\frmStock$1.class
+com\prizma\svevendas\view\frmTotalSaleDay$1.class
 com\prizma\svevendas\view\frmLoginSecurity$1.class
 com\prizma\svevendas\view\frmProducts$4.class
 com\prizma\svevendas\view\frmProducts.class
@@ -65,9 +66,11 @@ com\prizma\svevendas\view\frmEmployees$15.class
 com\prizma\svevendas\view\frmProducts$2.class
 com\prizma\svevendas\model\Suppliers.class
 com\prizma\svevendas\view\frmSales$1.class
+com\prizma\svevendas\view\frmTotalSaleDay$2.class
 com\prizma\svevendas\dao\EmployeesDAO.class
 com\prizma\svevendas\model\Customers.class
 com\prizma\svevendas\view\frmProducts$9.class
+com\prizma\svevendas\view\frmTotalSaleDay.class
 com\prizma\svevendas\view\frmProducts$13.class
 com\prizma\svevendas\view\frmSales$7.class
 com\prizma\svevendas\view\frmCustomers$3.class
@@ -103,6 +106,7 @@ com\prizma\svevendas\view\frmEmployees$1.class
 com\prizma\svevendas\view\frmSales.class
 com\prizma\svevendas\view\frmStock$8.class
 com\prizma\svevendas\view\frmCustomers$5.class
+com\prizma\svevendas\view\frmMainScreen$12.class
 com\prizma\svevendas\view\frmSuppliers$12.class
 com\prizma\svevendas\view\frmSuppliers$15.class
 com\prizma\svevendas\view\frmSuppliers$1.class
@@ -121,6 +125,7 @@ com\prizma\svevendas\view\frmSuppliers$7.class
 com\prizma\svevendas\view\frmCustomers$14.class
 com\prizma\svevendas\view\frmProducts$6.class
 com\prizma\svevendas\dao\ItemSaleDAO.class
+com\prizma\svevendas\view\frmMainScreen$11.class
 com\prizma\svevendas\view\frmLoginSecurity$5.class
 com\prizma\svevendas\view\frmSuppliers$11.class
 com\prizma\svevendas\view\frmProducts$16.class
